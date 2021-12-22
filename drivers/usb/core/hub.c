@@ -5077,7 +5077,7 @@ loop:
 		if (status != -ENOTCONN && status != -ENODEV)
 			dev_err(&port_dev->dev,
 					"unable to enumerate USB device\n");
-		if (!hub->hdev->parent && dev_speed == USB_SPEED_UNKNOWN
+		if (!hub->hdev->parent == USB_SPEED_UNKNOWN
 			&& hcd->usb_phy && hcd->usb_phy->disable_chirp) {
 			ret = hcd->usb_phy->disable_chirp(hcd->usb_phy, true);
 			if (!ret) {

@@ -553,3 +553,4 @@ alternative_cb_end
 #endif /* CONFIG_MITIGATE_SPECTRE_BRANCH_HISTORY */
 	.endm
 #endif	/* __ASM_ASSEMBLER_H */
+	

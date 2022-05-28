@@ -67,7 +67,7 @@ function compile() {
 # Zipping
 function zipping() {
     cd AnyKernel || exit 1
-    zip -r9 viviz-beam_of_prism-realme_sdm710-${TANGGAL}.zip *
+    zip -r9 NexLTS-realme_sdm710-${TANGGAL}.zip *
     cd ..
 }
 sendinfo

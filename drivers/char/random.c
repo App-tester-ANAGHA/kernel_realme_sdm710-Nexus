@@ -51,9 +51,9 @@
 #include <linux/syscalls.h>
 #include <linux/completion.h>
 #include <linux/uuid.h>
-#include <crypto/chacha.h>
 #include <linux/siphash.h>
 #include <linux/uio.h>
+#include <crypto/chacha.h>
 #include <crypto/blake2s.h>
 #include <asm/processor.h>
 #include <asm/uaccess.h>
@@ -281,6 +281,7 @@ static void crng_reseed(void)
  * safer to set the random_data parameter to &chacha_state[4] so
  * that this function overwrites it before returning.
  */
+
 static void crng_fast_key_erasure(u8 key[CHACHA_KEY_SIZE],
 				  u32 chacha_state[CHACHA_BLOCK_SIZE / sizeof(u32)],
 				  u8 *random_data, size_t random_data_len)
@@ -481,13 +482,13 @@ static ssize_t get_random_bytes_user(struct iov_iter *iter)
 				break;
 			cond_resched();
 		}
-	} 
-	
+	}
 	memzero_explicit(block, sizeof(block));
 out_zero_chacha:
 	memzero_explicit(chacha_state, sizeof(chacha_state));
 	return ret ? ret : -EFAULT;
 }
+
 
 /*
  * Batched entropy returns random integers. The quality of the random
@@ -552,10 +553,10 @@ DEFINE_BATCHED_ENTROPY(u32)
 
 #ifdef CONFIG_SMP
 /*
+
  * This function is called when the CPU is coming up, with entry
  * CPUHP_RANDOM_PREPARE, which comes before CPUHP_WORKQUEUE_PREP.
  */
- 
 int __cold random_prepare_cpu(unsigned int cpu)
 {
 	/*
@@ -1517,5 +1518,4 @@ struct ctl_table random_table[] = {
 	},
 	{ }
 };
-
 #endif	/* CONFIG_SYSCTL */

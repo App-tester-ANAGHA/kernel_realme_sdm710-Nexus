@@ -394,9 +394,10 @@ static inline int bpf_obj_get_user(const char __user *pathname)
 }
 
 static inline struct bpf_prog *bpf_prog_get_type_path(const char *name,
+        return ERR_PTR(-EOPNOTSUPP);
+
 				enum bpf_prog_type type)
 {
-	return ERR_PTR(-EOPNOTSUPP);
 }
 #endif /* CONFIG_BPF_SYSCALL */
 
